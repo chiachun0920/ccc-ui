@@ -1,0 +1,88 @@
+<div class="col-sm-5">
+    <h2>Panel-bar：顯示階層性的資料</h2>
+
+    <h3>介面</h3>
+    <pre class="prettyprint lang-javascript">
+        
+    @Input() items: PanelBarItem[];
+    @Input() filterMode: boolean[];
+    @Output() select: EventEmitter&lt;string&gt;
+    </pre>
+
+    <h3>PanelBarItem結構</h3>
+    <pre class="prettyprint lang-javascript">
+    export class PanelBarItem &#123;&#123;lCurlyB}}
+    
+        public title: string;
+        public color?: string;
+        public child?: PanelBarItem[];
+        public expand?: boolean;
+        public command?: Function;
+        public isSelect?: boolea;
+    &#123;&#123;rCurlyB}}
+    </pre>
+
+    <h3>使用方法</h3>
+    <pre class="prettyprint lang-html">
+
+    &lt;ccc-panel-bar 
+          [items]=&quot;items&quot; 
+          [filterMode]=&quot;true&quot; 
+          (select)=&quot;onSelect($event)&quot;&gt; 
+    &lt;/ccc-panel-bar&gt;
+    </pre>
+    <pre class="prettyprint lang-javascript">
+        
+    this.items = [
+    &#123;
+        title: 'Documents', color: '#DDDDDD', child: [
+            &#123;
+                title: 'Work', color: '#FFE599', child: [
+                    &#123; title: 'Expenses.doc' },
+                    &#123; title: 'Resume.doc' }
+                ]
+            },
+            &#123;
+                title: 'Home', color: '#FFE599', child: [
+                    &#123; title: 'Invoices.txt' }
+                ]
+            },
+
+        ]
+    },
+    &#123;
+        title: 'Pictures', color: '#DDDDDD', child: [
+            &#123;
+                title: 'barcelona.jpg'
+            },
+            &#123;
+                title: 'logo.jpg'
+            },
+            &#123;
+                title: 'dog.jpg'
+            },
+        ]
+    },
+    &#123;
+        title: 'Movies', color: '#DDDDDD', child: [
+            &#123;
+                title: 'Al Pacino', color: '#FFE599', child: [
+                    &#123; title: 'Scarface.mp4' },
+                    &#123; title: 'Serpico.avi' }
+                ]
+            },
+            &#123;
+                title: 'Robert De Niro', color: '#FFE599', child: [
+                    &#123; title: 'Goodfellas' },
+                    &#123; title: 'Untouchables' }
+                ]
+            },
+
+        ]
+    }]
+    </pre>
+</div>
+<div class="col-sm-7">
+    <h3>Demo</h3>
+    <ccc-panel-bar [items]="items" [filterMode]="true" (select)="onSelect($event)"></ccc-panel-bar>
+</div>

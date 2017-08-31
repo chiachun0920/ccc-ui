@@ -1,0 +1,52 @@
+<ul class="nav-bar left">
+    <li class="nav-item left" *ngFor="let tab of lTabs" (click)="onLeftTabClick(tab)">{{tab.name}}</li>
+</ul>
+<ul class="nav-bar right">
+    <li class="nav-item right" *ngFor="let tab of rTabs" (click)="onRightTabClick(tab)">{{tab.name}}</li>
+</ul>
+<div class="base row">
+    <!--左側面板-->
+    <div [ngClass]="'col-sm-'+leftPanelWidth" class="panel left">
+        <div class="row panel-header">
+            <span class="icon" [ngClass]="currentTab?.icon"></span>{{currentTab?.name}}
+            <span *ngIf="!isLeftPanelExpand" class="expand-panel-btn" (click)="onExpandLeftPanelClick()">
+                <span class="fa fa-angle-right"></span>
+            </span>
+            <span *ngIf="isLeftPanelExpand" class="expand-panel-btn" (click)="onAbridgeLeftPanelClick()">
+                <span class="fa fa-angle-left"></span>
+            </span>
+            <span class="close-panel-btn" (click)="onClosePanelClick()">
+                <span class="fa fa-close"></span>
+            </span>
+        </div>
+        <div class="row panel-body">
+
+            <ng-template left-panel-host></ng-template>
+
+        </div>
+    </div>
+    <!--中間主體-->
+    <div [ngClass]="'col-sm-'+contentWidth" class="center-base" style="overflow:auto">
+        <ng-content></ng-content>
+    </div>
+    <!--右側面板-->
+    <div [ngClass]="'col-sm-'+rightPanelWidth" class="panel right">
+        <div class="row panel-header">
+            <span class="icon" [ngClass]="currentTab?.icon"></span>{{currentTab?.name}}
+            <span *ngIf="!isRightPanelExpand" class="expand-panel-btn" (click)="onExpandRightPanelClick()">
+                <span class="fa fa-angle-left"></span>
+            </span>
+            <span *ngIf="isRightPanelExpand" class="expand-panel-btn" (click)="onAbridgeRightPanelClick()">
+                <span class="fa fa-angle-right"></span>
+            </span>
+            <span class="close-panel-btn" (click)="onClosePanelClick()">
+                <span class="fa fa-close"></span>
+            </span>
+        </div>
+        <div class="row panel-body">
+            <div class="right-panel">
+                <ng-template right-panel-host></ng-template>
+            </div>
+        </div>
+    </div>
+</div>

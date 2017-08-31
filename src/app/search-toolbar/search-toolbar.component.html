@@ -1,0 +1,9 @@
+<cmuh-toolbar>
+    <div class="plugin-block">
+        <ng-content></ng-content>
+    </div>
+    <div class="search-block">
+        <input type="text" class="search-bar" id="usr" #search maxlength="10" [placeholder]="placeholder">
+        <span class="glyphicon glyphicon-search" (click)="clickSearchButton(search.value)"></span>
+    </div>
+</cmuh-toolbar>

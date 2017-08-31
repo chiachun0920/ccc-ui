@@ -1,0 +1,9 @@
+<div style="width:100%;position:relative;display:inline-block">
+    <button type="button" class="btn btn-default" style="width:100%;text-align:left" (click)="toggle()">
+    {{buttonName}}<span
+      style="float:right;top:5px"
+      class="glyphicon glyphicon-triangle-bottom"></span></button>
+    <div style="width:100%;position:absolute;z-index:50" [style.display]="isOpen?'block':'none'">
+        <cmuh-list-box [dataSource]="dataSource" [(selectedItem)]="selectedItem" [textField]="textField" [valueField]="valueField"></cmuh-list-box>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="ccc-dropdown-click" [style.width]="width">
+    <button class="ccc-btn" [style.height]="buttonHeight" [style.background-color]="backgroundColor" [style.color]="color" (click)="toggle()">{{selectedItem?selectedItem[textField]:(defaultButtonName?defaultButtonName:'non-selected')}}<span class="caret"></span></button>
+    <div class="ccc-dropdown-content ccc-border" [ngClass]="isOpen?'ccc-show':''">
+        <input id="inputKeyword" type="text" style="display:inline-block" [(ngModel)]="filterText" [style.display]="filterMode?'inline-block':'none'">
+        <span style="position:absolute;top:5px;right:2px" class="glyphicon glyphicon-search" [style.display]="filterMode?'inline-block':'none'"></span>
+        <div style="overflow:auto" [style.max-height]="height">
+            <div *ngFor="let item of dataSource;let i=index">
+                <a *ngIf="filter(filterText,item[textField])" [ngClass]="isActivated(i)?'highlighted':''" (click)="close();selectItem(i)">{{item?item[textField]:''}}</a>
+            </div>
+        </div>
+    </div>
+</div>

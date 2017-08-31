@@ -1,0 +1,6 @@
+<div *ngFor="let item of items">
+    <div (click)="onClick(item)" style="padding:2px 4px;border:1px solid #828282" [style.background-color]="item?.color" [ngClass]="isHt(item)?'Ht':''">
+        {{item.title}}<span [ngClass]="('fa fa-caret-')+(item.expand?'up':'down')" *ngIf="item.child" style="position:relative;float:right;margin-right:20px"></span>
+    </div>
+    <ccc-panel-bar-item [items]="item.child" *ngIf="item.child&&item.expand" (select)="onSelect($event)"></ccc-panel-bar-item>
+</div>

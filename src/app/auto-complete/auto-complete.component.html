@@ -1,0 +1,21 @@
+<input
+    class="form-control"
+    type="text"
+    (input)="findResult(resultInput.value)"
+    [(ngModel)]="result"
+    #resultInput>
+
+    <div class="suggestions"
+        [ngClass]="isShowSuggestion?'show':'non-show'"
+        [style.max-height]="height">
+        <ul class="list-group">
+            <li class="list-group-item"
+                *ngFor="let item of suggestion;let i = index"
+                [ngClass]="isHighlighted(i)?'highlighted':'non-highlighted'"
+                (click)="autoComplete(item)"
+                (mouseover)="highlight(i)">
+                <a href="#"
+                    [id]="item">{{item}}</a>
+            </li>
+        </ul>
+    </div>

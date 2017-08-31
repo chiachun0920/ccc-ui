@@ -1,0 +1,39 @@
+<div class="col-sm-12">
+    <h2>Dock：時尚化的邊欄</h2>
+    <h3>說明</h3>
+    <pre>
+        
+    移動你的滑鼠到視窗的最下面，你會看到...
+    </pre>
+    <h3>介面</h3>
+    <pre class="prettyprint lang-javascript">
+        
+    @Input() icon: Icon;
+    @Output() iconClick: EventEmitter&lt;Icon&gt;
+    </pre>
+
+    <h3>Icon結構</h3>
+    <pre class="prettyprint lang-javascript">
+        
+    export class Icon &#123;
+        public iconImg: string;
+        public title: string;
+    }
+    </pre>
+
+    <h3>使用方法</h3>
+    <pre class="prettyprint lang-html">
+
+    &lt;ccc-dock 
+        [icon]="appIcon" 
+        (iconClick)="onClick($event)"&gt;&lt;/ccc-dock&gt;
+    </pre>
+    <pre class="prettyprint lang-javascript">
+
+    public appIcon = [
+        &#123; iconImg: '', title: 'panelBar', path: 'panel-bar' }
+    ];
+    </pre>
+</div>
+<div class="col-sm-8"></div>
+<!-- <ccc-dock [icon]="appIcon" (clickIcon)="onClickIcon($event)"></ccc-dock> -->

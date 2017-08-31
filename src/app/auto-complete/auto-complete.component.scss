@@ -1,0 +1,45 @@
+div.suggestions {
+    overflow-y: auto;
+}
+
+li {
+    transition: background-color 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    cursor: default;
+    color: black;
+    &:focus {
+        color: black;
+        outline: none;
+    }
+    &:hover {
+        color: black;
+    }
+}
+
+.highlighted {
+    background-color: cornflowerblue;
+    a {
+        color: white;
+    }
+}
+
+div.show {
+    //opacity: 1;
+    transform: rotateX(0deg);
+    transform-origin: top;
+    transition: opacity 0.15s linear, transform 0.15s linear;
+}
+
+div.non-show {
+    //opacity: 0;
+    transform: rotateX(90deg);
+}
+
+// li:hover {
+//     background-color: cornflowerblue;
+//     cursor: pointer;
+// }

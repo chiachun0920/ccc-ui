@@ -1,0 +1,44 @@
+<div class="col-sm-12">
+    <h2>Bookmark-Panel：書籤面板</h2>
+    <h3>說明</h3>
+    <pre>
+
+    透過Component動態載入，來抽換左右兩側不同的Component
+    </pre>
+    <h3>介面</h3>
+    <pre class="prettyprint">
+
+        @Input() lTabs: PanelBarTab[];
+        @Input() rTabs: PanelBarTab[];
+    </pre>
+    <h3>PanelBarTab結構</h3>
+    <pre class="prettyprint lang-javascript">
+
+    export class Icon &#123;
+        public component: Type&lt;any&gt;;
+        public name: string;
+        public icon: string;
+    }
+    </pre>
+    <h3>使用方法</h3>
+    <pre class="prettyprint lang-html">
+
+    &lt;ccc-panel-bar [lTabs]="lTabs" [rTabs]="rTabs"&gt;&lt;/ccc-panel-bar&gt;
+    </pre>
+    <pre class="prettyprint lang-javascript">
+
+    this.rTabs = [
+        &#123; component: AComponent, name: '右邊欄一', icon: 'fa fa-medkit' },
+        &#123; component: BComponent, name: '右邊欄二', icon: 'fa fa-user-md' },
+        &#123; component: CComponent, name: '右邊欄三', icon: 'fa fa-ambulance' },
+    ]
+    this.lTabs = [
+        &#123; component: DComponent, name: '左邊欄一', icon: 'fa fa-medkit' },
+        &#123; component: EComponent, name: '左邊欄二', icon: 'fa fa-user-md' },
+        &#123; component: FComponent, name: '左邊欄三', icon: 'fa fa-ambulance' },
+    ]
+    </pre>
+</div>
+<div class="col-sm-12">
+    <ccc-panel-bar [lTabs]="lTabs" [rTabs]="rTabs"></ccc-panel-bar>
+</div>

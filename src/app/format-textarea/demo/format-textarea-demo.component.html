@@ -1,0 +1,21 @@
+<cmuh-format-textarea (updateResult)="onUpdateResult($event)" [rawData]="rawData"
+    #textarea></cmuh-format-textarea>
+<div>
+    <label for="">Raw Data</label>
+    <pre>{{result.rawData}}</pre>
+</div>
+<div>
+    <label for="">Result</label>
+    <pre>{{result.result}}</pre>
+</div>
+<div>
+    <label for="">Variable</label>
+    <pre>{{result.variables|json}}</pre>
+</div>
+<div>
+    <label>name</label>
+    <input type="text" (keyup)="replaceRawData('name',input1.value)" #input1>
+    <label>age</label>
+    <input type="text" (keyup)="replaceRawData('age',input2.value)" #input2>
+
+</div>

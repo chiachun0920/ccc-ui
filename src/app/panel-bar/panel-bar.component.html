@@ -1,0 +1,3 @@
+<input class="form-control" type="text" [(ngModel)]="keyword" (input)="onInput($event)" *ngIf="filterMode">
+<br>
+<ccc-panel-bar-item [items]="filteredItems" (select)="onSelect($event)"></ccc-panel-bar-item>

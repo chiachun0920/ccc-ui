@@ -1,0 +1,73 @@
+.ccc-dropdown-click {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.ccc-btn {
+    background-color: #fff;
+    border:1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    line-height:28px;
+    outline: 0;
+    overflow: hidden;
+    padding: 2px 5px;
+    text-decoration: none!important;
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+    width:100%;
+    &:hover {
+        background-color: rgb(235,235,235);
+    }
+}
+.ccc-border{
+    border:1px solid #ccc;
+}
+
+span.caret{
+    float: right;
+    top: 50%;
+    right:5px;
+    position: absolute;
+}
+
+.ccc-dropdown-content {
+    background-color: #fff;
+    cursor: auto;
+    color: #000;    
+    display: none;
+    margin: 0;
+    position: absolute;
+    padding: 0;
+    width:100%;
+    z-index:5;
+    a {
+        color:black;
+        padding: 6px 16px;
+        display: block;
+        text-decoration: none!important;
+        &:hover{
+            background-color: #ccc;
+        }
+        &.highlighted {
+            background-color: #428cba;
+            color: white;
+        }
+    }
+
+    input {
+        width:100%;
+    }
+}
+
+.ccc-hide {
+    display: none!important
+}
+
+.ccc-show {
+    display: block!important
+}

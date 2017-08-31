@@ -1,0 +1,133 @@
+$overall-height: 600px;
+$overall-margin: 20px 0px;
+.row {
+    margin: 0px;
+}
+
+.col-0 {
+    display: none;
+}
+
+ul.nav-bar {
+    // border: 2px solid black;
+    position: relative;
+    padding: 20px 0px;
+    overflow: auto;
+    z-index: 3;
+    &.left {
+        float:left
+    }
+    &.right {
+        float:right;
+    }
+    //style
+    background-color: #043E6D;
+}
+
+li.nav-item {
+    padding: 0px 5px;
+    margin: 10px 5px;
+    width: 30px;
+    writing-mode: vertical-rl;
+    list-style-type: none;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    &.left {
+        transition: border-left 0.2s linear;
+        border-left: 2px solid #043E6D;
+        &:hover {
+            border-left: 2px solid white;
+        }
+    }
+    &.right {
+        transition: border-right 0.2s linear;
+        border-right: 2px solid #043E6D;
+        &:hover {
+            border-right: 2px solid white;
+        }
+    }
+}
+
+.base {
+    padding: 20px 40px;
+    height: $overall-height;
+    background-color: #043E6D;
+}
+
+.panel {
+    padding: 0px;
+    height: 100%;
+    margin-bottom: 0px;
+    z-index: 2;
+    overflow: auto;
+    &.left {
+        border-right: 2px solid #ededed;
+        box-shadow: 1px 1px 1px #ddd;
+    }
+    &.right {
+        // flex-flow: row-reverse wrap;
+        border-left: 2px solid #ededed;
+        box-shadow: -1px 1px 1px #ddd;
+    }
+    background-color:white;
+    &::-webkit-scrollbar {
+        width: 6px;
+        border: 1px solid #DDD;
+        border-radius: 4px;
+        top: 4px;
+        position: relative;
+    }
+    &::-webkit-scrollbar-track {
+        border: 2px solid #DDD;
+        border-radius: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+        // border: 2px solid yellow;
+        background-color: #011f38;
+        border-radius: 8px;
+    }
+    .panel-header {
+        color: #0000E3;
+        font-weight: bold;
+        background-color: #FFFFCE;
+        border-bottom: #efefc2;
+        .icon {
+            margin-right: 4px;
+        }
+    }
+}
+
+.close-panel-btn {
+    position: absolute;
+    width: 40px;
+    right: 0px;
+    text-align: center;
+    //style
+    background-color: #C9302C;
+    color: white;
+    cursor: pointer;
+}
+
+.expand-panel-btn {
+    position: absolute;
+    width: 40px;
+    right: 40px;
+    text-align: center;
+    //style
+    background-color: #449D44;
+    color: white;
+    cursor: pointer;
+}
+
+.center-base {
+    height: 100%;
+    background-color: white;
+    padding: 5px;
+    border-radius: 2px;
+    overflow: auto;
+}
+
+.col-sm-0 {
+    display: none;
+}

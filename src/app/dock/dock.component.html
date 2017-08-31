@@ -1,0 +1,34 @@
+<div class="clip-front" (click)="back()">
+
+</div>
+<div class="clip-back" (click)="next()">
+
+</div>
+<div class="base">
+    <div class="main">
+        <div class="blockbase" [@leftFadeOut]="aniStateOfNext" [@rightFadeOut]="aniStateOfPre" (@leftFadeOut.done)="aniOfNextDone($event)" (@rightFadeOut.done)="aniOfPreDone($event)">
+            <div *ngFor="let i of gridItem[curIndexOfRow]" class="outerblock">
+                <div class="block">
+                    <span class="icon-text">{{i.title}}</span>
+                    <img [src]="i.imgIcon?i.imgIcon:defaultIconImg" (click)="onClick(i)">
+                </div>
+            </div>
+        </div>
+        <div class="blockbase next" [@leftFadeIn]="aniStateOfNext">
+            <div *ngFor="let i of gridItem[circleNumber[curIndexOfRow].next]" class="outerblock">
+                <div class="block">
+                    <span class="icon-text">{{i.title}}</span>
+                    <img [src]="i.imgIcon?i.imgIcon:defaultIconImg" (click)="onClick(i)">
+                </div>
+            </div>
+        </div>
+        <div class="blockbase pre" [@rightFadeIn]="aniStateOfPre">
+            <div *ngFor="let i of gridItem[circleNumber[curIndexOfRow].next]" class="outerblock">
+                <div class="block">
+                    <span class="icon-text">{{i.title}}</span>
+                    <img [src]="i.imgIcon?i.imgIcon:defaultIconImg" (click)="onClick(i)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
