@@ -1,1 +1,1 @@
-export * from './item-box-ds';
+export * from './item-box-pair';

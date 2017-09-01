@@ -22,5 +22,5 @@ export const routes: Routes = [
     { path: 'search-toolbar', component: SearchToolbarDemoComponent },
     { path: 'dock', component: DockDemoComponent },
     { path: 'panel-bar', component: PanelBarDemoComponent },
-    { path: 'dropdown-list', component: DropdownListBoxDemoComponent }
+    { path: 'dropdown-list-box', component: DropdownListBoxDemoComponent }
 ];

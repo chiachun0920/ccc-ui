@@ -8,39 +8,56 @@
     <h3>介面</h3>
     <pre class="prettyprint">
 
-        @Input() lTabs: PanelBarTab[];
-        @Input() rTabs: PanelBarTab[];
+    @Input() keyName: string;
+    @Input() value: string;
+    @Input() height: string;
+    @Input() itemBoxPairs:ItemBoxPairs[];
+    @Output() pairFocus: EventEmitter&lt;ItemBoxPair&gt;;
     </pre>
-    <h3>PanelBarTab結構</h3>
+    <h3>ItemBoxPair結構</h3>
     <pre class="prettyprint lang-javascript">
 
-    export class Icon &#123;
-        public component: Type&lt;any&gt;;
-        public name: string;
-        public icon: string;
+    export class Pair &#123;
+        public key: string;
+        public value: string;
     }
     </pre>
     <h3>使用方法</h3>
     <pre class="prettyprint lang-html">
 
-    &lt;ccc-panel-bar [lTabs]="lTabs" [rTabs]="rTabs"&gt;&lt;/ccc-panel-bar&gt;
+    &lt;ccc-item-box 
+        [keyName]="keyName" 
+        [valueName]="valueName" 
+        [height]="height" 
+        [itemBoxPairs]="itemBoxPairs" 
+        (pairFocus)="onPairFocus($event)"&gt;
+    &lt;/ccc-item-box&gt;
     </pre>
     <pre class="prettyprint lang-javascript">
 
-    this.rTabs = [
-        &#123; component: AComponent, name: '右邊欄一', icon: 'fa fa-medkit' },
-        &#123; component: BComponent, name: '右邊欄二', icon: 'fa fa-user-md' },
-        &#123; component: CComponent, name: '右邊欄三', icon: 'fa fa-ambulance' },
-    ]
-    this.lTabs = [
-        &#123; component: DComponent, name: '左邊欄一', icon: 'fa fa-medkit' },
-        &#123; component: EComponent, name: '左邊欄二', icon: 'fa fa-user-md' },
-        &#123; component: FComponent, name: '左邊欄三', icon: 'fa fa-ambulance' },
-    ]
+    public height: string = '200px';
+    public keyName = '鍵值';
+    public valueName = '內容';
+    public data: ItemBoxPair;
+    private itemBoxPairs: ItemBoxPair[] = [
+        &#123; key: "", value: "" },
+        &#123; key: "01", value: "I" },
+        &#123; key: "02", value: "II" },
+        &#123; key: "03", value: "III" },
+        &#123; key: "04", value: "IV" },
+        &#123; key: "05", value: "V" },
+        &#123; key: "06", value: "VI" },
+        &#123; key: "07", value: "VII" },
+        &#123; key: "08", value: "VIII" },
+        &#123; key: "09", value: "IX" },
+        &#123; key: "10", value: "X" }
+    ];
     </pre>
 </div>
 <div class="col-sm-5">
-    <cmuh-item-box (focusItem)="onFocusItem($event)" [keyName]="keyName" [valueName]="valueName" [height]="height" [dataSource]="itemBoxDS"></cmuh-item-box>
+    <h3>Demo</h3>
+    <ccc-item-box [keyName]="keyName" [valueName]="valueName" [height]="height" [itemBoxPairs]="itemBoxPairs" (pairFocus)="onPairFocus($event)">
+    </ccc-item-box>
 </div>
 
 <div>

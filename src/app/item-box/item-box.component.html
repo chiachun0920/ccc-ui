@@ -1,30 +1,19 @@
-<input
-    class="form-control"
-    id="search"
-    type="text"
-    (input)="searchItem(searchText.value)"
-    #searchText>
-    <div class="table"
-        [style.height]="height">
-        <table
-            class="table"
-            (click)="focus()">
-            <thead>
-                <tr>
-                    <th>{{keyName}}</th>
-                    <th>{{valueName}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr [ngClass]="isItemSelected(item)?'selected':'non-selected'"
-                    *ngFor="let item of dataSource"
-                    (click)="selectItem(item)">
-                    <td class="key">
-                        <a href="#"
-                            [id]="item.key?item.key:'empty'">{{item.key}}</a>
-                    </td>
-                    <td class="value">{{item.value}}</td>
-                </tr>
-            </tbody>
-            </table>
-    </div>
+<input class="form-control" id="search" type="text" (input)="searchItem(searchText.value)" #searchText>
+<div class="table" [style.height]="height">
+    <table class="table" (click)="focus()">
+        <thead>
+            <tr>
+                <th>{{keyName}}</th>
+                <th>{{valueName}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="isItemSelected(item)?'selected':'non-selected'" *ngFor="let item of itemBoxPairs" (click)="selectItem(item)">
+                <td class="key">
+                    <a href="#" [id]="item.key?item.key:'empty'">{{item.key}}</a>
+                </td>
+                <td class="value">{{item.value}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

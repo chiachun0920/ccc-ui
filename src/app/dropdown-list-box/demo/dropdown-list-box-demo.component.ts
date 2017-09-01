@@ -7,8 +7,15 @@ export class DropdownListBoxDemoComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit() { 
+    ngOnInit() {
 
     }
+
+    dataSource = [
+        { text: 'Newyork', value: 'Newyork' },
+        { text: 'Taiwan', value: 'Taiwan' },
+        { text: 'China', value: 'China' },
+        { text: 'Japan', value: 'Japan' }
+    ]
 
 }

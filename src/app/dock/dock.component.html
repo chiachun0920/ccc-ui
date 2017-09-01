@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="blockbase next" [@leftFadeIn]="aniStateOfNext">
-            <div *ngFor="let i of gridItem[circleNumber[curIndexOfRow].next]" class="outerblock">
+            <div *ngFor="let i of gridItem[nextNumber(curIndexOfRow)]" class="outerblock">
                 <div class="block">
                     <span class="icon-text">{{i.title}}</span>
                     <img [src]="i.imgIcon?i.imgIcon:defaultIconImg" (click)="onClick(i)">
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="blockbase pre" [@rightFadeIn]="aniStateOfPre">
-            <div *ngFor="let i of gridItem[circleNumber[curIndexOfRow].next]" class="outerblock">
+            <div *ngFor="let i of gridItem[preNumber(curIndexOfRow)]" class="outerblock">
                 <div class="block">
                     <span class="icon-text">{{i.title}}</span>
                     <img [src]="i.imgIcon?i.imgIcon:defaultIconImg" (click)="onClick(i)">

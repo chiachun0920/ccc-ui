@@ -13,15 +13,15 @@ export class AppComponent implements OnInit {
     { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//bullbasaur1600.png', title: 'Panel-Bar', path: 'panel-bar' },
     { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//dratini1600.png', title: 'Dock', path: 'dock' },
     { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//charmander1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
-    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//squirtle1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
-    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//snorlax1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
-    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//eevee1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
-    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//zubat1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
-    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//psyduck1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
-    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//mankey1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
-    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//weedle1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
-    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//pidgey1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
-    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//venonat1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' }
+    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//squirtle1600.png', title: 'Item-box', path: 'item-box' },
+    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//snorlax1600.png', title: 'Dropdown-List-Box', path: 'dropdown-list-box' },
+    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//eevee1600.png', title: 'Format-Textarea', path: 'format-textarea' },
+    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//zubat1600.png', title: 'Toolbar', path: 'toolbar' },
+    { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//psyduck1600.png', title: 'Auto-Complete', path: 'auto-complete' },
+    // { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//mankey1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
+    // { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//weedle1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
+    // { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//pidgey1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' },
+    // { imgIcon: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//venonat1600.png', title: 'Bookmark-Panel', path: 'bookmark-panel' }
   ];
   constructor(private router: Router) { }
   ngOnInit() {
