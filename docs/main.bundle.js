@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <a class=\"navbar-brand\" href=\"#\">{{title}}</a>\r\n        </div>\r\n        <ul class=\"nav navbar-nav\">\r\n            <li><a [routerLink]=\"'/panel-bar'\">PanelBar</a></li>\r\n            <li><a [routerLink]=\"'/bookmark-panel'\">BookmarkPanel</a></li>\r\n            <li><a [routerLink]=\"'/dock'\">Dock</a></li>\r\n            <li><a [routerLink]=\"'/item-box'\">ItemBox</a></li>\r\n            <li><a [routerLink]=\"'/auto-complete'\">AutoComplete</a></li>\r\n            <li><a [routerLink]=\"'/format-textarea'\">FormatTextArea</a></li>\r\n            <li><a [routerLink]=\"'/dropdown-list'\">DropDownList</a></li>\r\n            <li><a [routerLink]=\"'/toolbar'\">ToolBar</a></li>\r\n            <li><a [routerLink]=\"'/search-toolbar'\">SearchToolBar</a></li>\r\n        </ul>\r\n    </div>\r\n</nav>\r\n<div class=\"container-fluid\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n<ccc-dock [icon]=\"appIcon\" (iconClick)=\"onClick($event)\"></ccc-dock>"
+module.exports = "<nav class=\"navbar navbar-default\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <a class=\"navbar-brand\" href=\"#\">{{title}}</a>\r\n        </div>\r\n        <ul class=\"nav navbar-nav\">\r\n            <li><a [routerLink]=\"'/dock'\">Dock</a></li>\r\n            <li><a [routerLink]=\"'/bookmark-panel'\">BookmarkPanel</a></li>\r\n            <li><a [routerLink]=\"'/panel-bar'\">PanelBar</a></li>\r\n            <li><a [routerLink]=\"'/item-box'\">ItemBox</a></li>\r\n            <li><a [routerLink]=\"'/auto-complete'\">AutoComplete</a></li>\r\n            <li><a [routerLink]=\"'/format-textarea'\">FormatTextArea</a></li>\r\n            <li><a [routerLink]=\"'/dropdown-list'\">DropDownList</a></li>\r\n            <li><a [routerLink]=\"'/search-toolbar'\">SearchToolBar</a></li>\r\n        </ul>\r\n    </div>\r\n</nav>\r\n<div class=\"container-fluid\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n<ccc-dock [icon]=\"appIcon\" (iconClick)=\"onClick($event)\"></ccc-dock>"
 
 /***/ }),
 
@@ -234,7 +234,7 @@ var routes = [
 /***/ "../../../../../src/app/auto-complete/auto-complete.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<input\r\n    class=\"form-control\"\r\n    type=\"text\"\r\n    (input)=\"findResult(resultInput.value)\"\r\n    [(ngModel)]=\"result\"\r\n    #resultInput>\r\n\r\n    <div class=\"suggestions\"\r\n        [ngClass]=\"isShowSuggestion?'show':'non-show'\"\r\n        [style.max-height]=\"height\">\r\n        <ul class=\"list-group\">\r\n            <li class=\"list-group-item\"\r\n                *ngFor=\"let item of suggestion;let i = index\"\r\n                [ngClass]=\"isHighlighted(i)?'highlighted':'non-highlighted'\"\r\n                (click)=\"autoComplete(item)\"\r\n                (mouseover)=\"highlight(i)\">\r\n                <a href=\"#\"\r\n                    [id]=\"item\">{{item}}</a>\r\n            </li>\r\n        </ul>\r\n    </div>"
+module.exports = "<input class=\"form-control\" type=\"text\" (input)=\"findResult(resultInput.value)\" [(ngModel)]=\"result\" #resultInput>\r\n\r\n<div class=\"suggestions\" [ngClass]=\"isShowSuggestion?'show':'non-show'\" [style.max-height]=\"height\">\r\n    <ul class=\"list-group\">\r\n        <li class=\"list-group-item\" *ngFor=\"let item of suggestion;let i = index\" [ngClass]=\"isHighlighted(i)?'highlighted':'non-highlighted'\" (click)=\"autoComplete(item)\" (mouseover)=\"highlight(i)\">\r\n            <a href=\"#\" [id]=\"item\">{{item}}</a>\r\n        </li>\r\n    </ul>\r\n</div>"
 
 /***/ }),
 
@@ -275,13 +275,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AutoCompleteComponent = (function () {
     function AutoCompleteComponent() {
         this.isShowSuggestion = false; // 是否顯示建議清單
-        this.updateResult = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+        this.resultUpdate = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
     }
     /**
      * Angular初始化函式
      */
     AutoCompleteComponent.prototype.ngOnInit = function () {
-        this.dataSource = this.dataSource ? this.dataSource : [];
+        this.suggestions = this.suggestions ? this.suggestions : [];
         this.height = this.height ? this.height : '300px';
     };
     /**
@@ -293,7 +293,7 @@ var AutoCompleteComponent = (function () {
     AutoCompleteComponent.prototype.autoComplete = function (item) {
         this.result = item;
         this.closeSuggestion();
-        this.updateResult.emit(item);
+        this.resultUpdate.emit(item);
     };
     /**
      * 關閉建議清單
@@ -310,14 +310,14 @@ var AutoCompleteComponent = (function () {
      * @returns {void}
      */
     AutoCompleteComponent.prototype.findResult = function (resultInput) {
-        this.updateResult.emit(resultInput);
+        this.resultUpdate.emit(resultInput);
         if (resultInput != '') {
             this.suggestion = [];
-            for (var i = 0; i < this.dataSource.length; i++) {
-                if (this.dataSource[i].toLowerCase().indexOf(resultInput.toLowerCase()) == 0) {
+            for (var i = 0; i < this.suggestions.length; i++) {
+                if (this.suggestions[i].toLowerCase().indexOf(resultInput.toLowerCase()) == 0) {
                     if (!this.isShowSuggestion)
                         this.isShowSuggestion = true;
-                    this.suggestion.push(this.dataSource[i]);
+                    this.suggestion.push(this.suggestions[i]);
                 }
             }
             this.tableOfHighlighted = [];
@@ -405,7 +405,7 @@ var AutoCompleteComponent = (function () {
             }
             if (event.keyCode == 13) {
                 this.result = this.suggestion[this.getIndexOfHighlightedItem()];
-                this.updateResult.emit(this.result);
+                this.resultUpdate.emit(this.result);
                 this.closeSuggestion();
             }
         }
@@ -421,7 +421,7 @@ var AutoCompleteComponent = (function () {
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
         __metadata("design:type", Array)
-    ], AutoCompleteComponent.prototype, "dataSource", void 0);
+    ], AutoCompleteComponent.prototype, "suggestions", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
         __metadata("design:type", String)
@@ -429,7 +429,7 @@ var AutoCompleteComponent = (function () {
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
         __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]) === "function" && _a || Object)
-    ], AutoCompleteComponent.prototype, "updateResult", void 0);
+    ], AutoCompleteComponent.prototype, "resultUpdate", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('document:keydown', ['$event']),
         __metadata("design:type", Function),
@@ -498,7 +498,7 @@ var AutoCompleteModule = (function () {
 /***/ "../../../../../src/app/auto-complete/demo/auto-complete-demo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<label>Search</label>\r\n<cmuh-auto-complete (updateResult)=\"onUpdateResult($event)\" [dataSource]=\"suggestion\" [height]=\"height\">\r\n</cmuh-auto-complete>\r\n<pre>result:{{result}}</pre>"
+module.exports = "<div class=\"col-sm-7\">\r\n    <h2>Auto Complete</h2>\r\n    <h3>介面</h3>\r\n    <pre class=\"prettyprint\">\r\n\r\n    @Input() suggestions: string[];\r\n    @Input() height: string;\r\n    @Output() resultUpdate: EventEmitter&lt;string&gt;\r\n    </pre>\r\n    <h3>使用方法</h3>\r\n    <pre class=\"prettyprint lang-html\">\r\n\r\n    &lt;ccc-auto-complete \r\n        [suggestions]=\"suggestions\" \r\n        [height]=\"height\" \r\n        (resultUpdate)=\"onResultUpdate($event)\"&gt;\r\n    &lt;/ccc-auto-complete&gt;\r\n    </pre>\r\n    <pre class=\"prettyprint lang-javascript\">\r\n\r\n    public result: string;\r\n    public height = \"320px\";\r\n    public suggestions: string[] = [\r\n        'Afghanistan',\r\n        'Albania',\r\n        'Algeria',\r\n        'Andorra',\r\n        'Angola',\r\n        'Antigua and Barbuda',\r\n        'Argentina',\r\n        'Armenia',\r\n        'Aruba',\r\n        'Australia',\r\n        'Austria',\r\n        'Azerbaijan',\r\n        'Bahamas, The',\r\n        'Bahrain',\r\n        'Bangladesh',\r\n        'Barbados',\r\n        'Belarus',\r\n        'Belgium',\r\n        'Belize',\r\n        'Benin',\r\n        'Bhutan',\r\n        'Bolivia',\r\n        'Bosnia and Herzegovina',\r\n        'Botswana',\r\n        'Brazil',\r\n        'Brunei',\r\n        'Bulgaria',\r\n        'Burkina Faso',\r\n        'Burma',\r\n        'Burundi'\r\n    ];\r\n    </pre>\r\n</div>\r\n<div class=\"col-sm-5\">\r\n    <h3>Demo</h3>\r\n    <cmuh-auto-complete [suggestions]=\"suggestions\" [height]=\"height\" (resultUpdate)=\"onUpdateResult($event)\">\r\n    </cmuh-auto-complete>\r\n</div>"
 
 /***/ }),
 
@@ -520,8 +520,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var AutoCompleteDemoComponent = (function () {
     function AutoCompleteDemoComponent() {
-        this.height = "120px";
-        this.suggestion = [
+        this.height = "320px";
+        this.suggestions = [
             'Afghanistan',
             'Albania',
             'Algeria',
@@ -1246,7 +1246,8 @@ var DockDemoComponent = (function () {
     DockDemoComponent.prototype.ngOnInit = function () { };
     DockDemoComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-            template: __webpack_require__("../../../../../src/app/dock/demo/dock-demo.component.html")
+            template: __webpack_require__("../../../../../src/app/dock/demo/dock-demo.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/dock/demo/dock-demo.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], DockDemoComponent);
@@ -1260,7 +1261,25 @@ var DockDemoComponent = (function () {
 /***/ "../../../../../src/app/dock/demo/dock-demo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-12\">\r\n    <h2>Dock：時尚化的邊欄</h2>\r\n    <h3>說明</h3>\r\n    <pre>\r\n        \r\n    移動你的滑鼠到視窗的最下面，你會看到...\r\n    </pre>\r\n    <h3>介面</h3>\r\n    <pre class=\"prettyprint lang-javascript\">\r\n        \r\n    @Input() icon: Icon;\r\n    @Output() iconClick: EventEmitter&lt;Icon&gt;\r\n    </pre>\r\n\r\n    <h3>Icon結構</h3>\r\n    <pre class=\"prettyprint lang-javascript\">\r\n        \r\n    export class Icon &#123;\r\n        public iconImg: string;\r\n        public title: string;\r\n    }\r\n    </pre>\r\n\r\n    <h3>使用方法</h3>\r\n    <pre class=\"prettyprint lang-html\">\r\n\r\n    &lt;ccc-dock \r\n        [icon]=\"appIcon\" \r\n        (iconClick)=\"onClick($event)\"&gt;&lt;/ccc-dock&gt;\r\n    </pre>\r\n    <pre class=\"prettyprint lang-javascript\">\r\n\r\n    public appIcon = [\r\n        &#123; iconImg: '', title: 'panelBar', path: 'panel-bar' }\r\n    ];\r\n    </pre>\r\n</div>\r\n<div class=\"col-sm-8\"></div>\r\n<!-- <ccc-dock [icon]=\"appIcon\" (clickIcon)=\"onClickIcon($event)\"></ccc-dock> -->"
+module.exports = "<div class=\"col-sm-12\">\r\n    <h2>Dock：時尚化的邊欄</h2>\r\n    <h3>說明</h3>\r\n    <pre>\r\n        \r\n    移動你的滑鼠到視窗的最下面，你會看到...\r\n    並試著點選邊欄的右邊及左邊\r\n    </pre>\r\n    <h3>介面</h3>\r\n    <pre class=\"prettyprint lang-javascript\">\r\n        \r\n    @Input() icon: Icon;\r\n    @Output() iconClick: EventEmitter&lt;Icon&gt;\r\n    </pre>\r\n\r\n    <h3>Icon結構</h3>\r\n    <pre class=\"prettyprint lang-javascript\">\r\n        \r\n    export class Icon &#123;\r\n        public iconImg: string;\r\n        public title: string;\r\n    }\r\n    </pre>\r\n\r\n    <h3>使用方法</h3>\r\n    <pre class=\"prettyprint lang-html\">\r\n\r\n    &lt;ccc-dock \r\n        [icon]=\"appIcon\" \r\n        (iconClick)=\"onClick($event)\"&gt;&lt;/ccc-dock&gt;\r\n    </pre>\r\n    <pre class=\"prettyprint lang-javascript\">\r\n\r\n    public appIcon = [\r\n        &#123; iconImg: '', title: 'panelBar', path: 'panel-bar' }\r\n    ];\r\n    </pre>\r\n</div>\r\n<div class=\"hint\" style=\"font-weight:bold;position:fixed;width:15%;height:70px;bottom:20px;right:0px;border:5px solid red;text-align:center;padding:20px;border-radius:20px;font-size:24px\">\r\n    點我點我點我\r\n</div>\r\n<div class=\"hint\" style=\"font-weight:bold;position:fixed;width:15%;height:70px;bottom:20px;left:0px;border:5px solid red;text-align:center;padding:20px;border-radius:20px;font-size:24px\">\r\n    點我點我點我\r\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/dock/demo/dock-demo.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".hint {\n  opacity: 0.0;\n  -webkit-animation: fadeIn 2s infinite;\n          animation: fadeIn 2s infinite;\n  -webkit-animation-delay: 1s;\n          animation-delay: 1s; }\n\n@-webkit-keyframes fadeIn {\n  from {\n    opacity: 0.0; }\n  to {\n    opacity: 1.0; } }\n\n@keyframes fadeIn {\n  from {\n    opacity: 0.0; }\n  to {\n    opacity: 1.0; } }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
 
 /***/ }),
 
@@ -3044,7 +3063,7 @@ var ItemBoxPair = (function () {
 /***/ "../../../../../src/app/list-box/list-box.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"list-group\">\r\n    <a *ngFor=\"let item of dataSource;let i=index\"\r\n        class=\"list-group-item\"\r\n        [ngClass]=\"isActive(i)?'active':''\"\r\n        (click)=\"toggle(i)\"><span class=\"chk-box\">\r\n            <span *ngIf=\"isActive(i)\" class=\"glyphicon glyphicon-ok\"></span></span>{{item[textField]}}</a>\r\n</div>"
+module.exports = "<div class=\"list-group\">\r\n    <a *ngFor=\"let item of dataSource;let i=index\" class=\"list-group-item\" [ngClass]=\"isActive(i)?'active':''\" (click)=\"toggle(i)\"><span class=\"chk-box\">\r\n            <span *ngIf=\"isActive(i)\" class=\"glyphicon glyphicon-ok\"></span></span>{{item[textField]}}</a>\r\n</div>"
 
 /***/ }),
 
@@ -3056,7 +3075,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".chk-box {\n  width: 15px;\n  height: 15px;\n  border: 1px solid black;\n  display: inline-block;\n  margin-right: 8px; }\n", ""]);
+exports.push([module.i, ".chk-box {\n  width: 15px;\n  height: 15px;\n  border: 1px solid #dddddd;\n  display: inline-block;\n  margin-right: 8px; }\n", ""]);
 
 // exports
 

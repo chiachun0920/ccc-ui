@@ -7,9 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@a
 })
 export class AutoCompleteComponent implements OnInit {
 
-  @Input() dataSource: string[];                     // 建議清單的資料依據(來源)
+  @Input() suggestions: string[];                     // 建議清單的資料依據(來源)
   @Input() height: string;
-  @Output() updateResult: EventEmitter<string>;      // result發生改變時觸發的事件
+  @Output() resultUpdate: EventEmitter<string>;      // result發生改變時觸發的事件
 
   private result: string;                            // 輸入框文字
   private suggestion: string[];                      // 自動建議清單
@@ -18,7 +18,7 @@ export class AutoCompleteComponent implements OnInit {
 
   constructor() {
 
-    this.updateResult = new EventEmitter<string>();
+    this.resultUpdate = new EventEmitter<string>();
   }
 
   /**
@@ -26,7 +26,7 @@ export class AutoCompleteComponent implements OnInit {
    */
   ngOnInit() {
 
-    this.dataSource = this.dataSource ? this.dataSource : [];
+    this.suggestions = this.suggestions ? this.suggestions : [];
     this.height = this.height ? this.height : '300px';
   }
 
@@ -40,7 +40,7 @@ export class AutoCompleteComponent implements OnInit {
 
     this.result = item;
     this.closeSuggestion();
-    this.updateResult.emit(item);
+    this.resultUpdate.emit(item);
   }
 
   /**
@@ -60,14 +60,14 @@ export class AutoCompleteComponent implements OnInit {
    */
   private findResult(resultInput: string): void {
 
-    this.updateResult.emit(resultInput);
+    this.resultUpdate.emit(resultInput);
     if (resultInput != '') {
       this.suggestion = [];
-      for (var i = 0; i < this.dataSource.length; i++) {
-        if (this.dataSource[i].toLowerCase().indexOf(resultInput.toLowerCase()) == 0) {
+      for (var i = 0; i < this.suggestions.length; i++) {
+        if (this.suggestions[i].toLowerCase().indexOf(resultInput.toLowerCase()) == 0) {
           if (!this.isShowSuggestion)
             this.isShowSuggestion = true;
-          this.suggestion.push(this.dataSource[i]);
+          this.suggestion.push(this.suggestions[i]);
         }
       }
       this.tableOfHighlighted = [];
@@ -164,7 +164,7 @@ export class AutoCompleteComponent implements OnInit {
       }
       if (event.keyCode == 13) {
         this.result = this.suggestion[this.getIndexOfHighlightedItem()];
-        this.updateResult.emit(this.result);
+        this.resultUpdate.emit(this.result);
         this.closeSuggestion();
       }
     }

@@ -8,9 +8,9 @@ export class AutoCompleteDemoComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
-    private result:string;
-    private height = "120px";
-    private suggestion: string[] = [
+    public result: string;
+    public height = "320px";
+    public suggestions: string[] = [
         'Afghanistan',
         'Albania',
         'Algeria',

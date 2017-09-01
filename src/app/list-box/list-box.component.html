@@ -1,7 +1,4 @@
 <div class="list-group">
-    <a *ngFor="let item of dataSource;let i=index"
-        class="list-group-item"
-        [ngClass]="isActive(i)?'active':''"
-        (click)="toggle(i)"><span class="chk-box">
+    <a *ngFor="let item of dataSource;let i=index" class="list-group-item" [ngClass]="isActive(i)?'active':''" (click)="toggle(i)"><span class="chk-box">
             <span *ngIf="isActive(i)" class="glyphicon glyphicon-ok"></span></span>{{item[textField]}}</a>
 </div>

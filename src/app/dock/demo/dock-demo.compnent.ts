@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    templateUrl: 'dock-demo.component.html'
+    templateUrl: 'dock-demo.component.html',
+    styleUrls: ['dock-demo.component.scss']
 })
 export class DockDemoComponent implements OnInit {
 

@@ -1,4 +1,61 @@
-<label>Search</label>
-<cmuh-auto-complete (updateResult)="onUpdateResult($event)" [dataSource]="suggestion" [height]="height">
-</cmuh-auto-complete>
-<pre>result:{{result}}</pre>
+<div class="col-sm-7">
+    <h2>Auto Complete</h2>
+    <h3>介面</h3>
+    <pre class="prettyprint">
+
+    @Input() suggestions: string[];
+    @Input() height: string;
+    @Output() resultUpdate: EventEmitter&lt;string&gt;
+    </pre>
+    <h3>使用方法</h3>
+    <pre class="prettyprint lang-html">
+
+    &lt;ccc-auto-complete 
+        [suggestions]="suggestions" 
+        [height]="height" 
+        (resultUpdate)="onResultUpdate($event)"&gt;
+    &lt;/ccc-auto-complete&gt;
+    </pre>
+    <pre class="prettyprint lang-javascript">
+
+    public result: string;
+    public height = "320px";
+    public suggestions: string[] = [
+        'Afghanistan',
+        'Albania',
+        'Algeria',
+        'Andorra',
+        'Angola',
+        'Antigua and Barbuda',
+        'Argentina',
+        'Armenia',
+        'Aruba',
+        'Australia',
+        'Austria',
+        'Azerbaijan',
+        'Bahamas, The',
+        'Bahrain',
+        'Bangladesh',
+        'Barbados',
+        'Belarus',
+        'Belgium',
+        'Belize',
+        'Benin',
+        'Bhutan',
+        'Bolivia',
+        'Bosnia and Herzegovina',
+        'Botswana',
+        'Brazil',
+        'Brunei',
+        'Bulgaria',
+        'Burkina Faso',
+        'Burma',
+        'Burundi'
+    ];
+    </pre>
+</div>
+<div class="col-sm-5">
+    <h3>Demo</h3>
+    <cmuh-auto-complete [suggestions]="suggestions" [height]="height" (resultUpdate)="onUpdateResult($event)">
+    </cmuh-auto-complete>
+</div>
